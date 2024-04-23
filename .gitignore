@@ -45,6 +45,7 @@ tar/test/list.h
 unzip/test/list.h
 CMakeCache.txt
 CMakeFiles/
+bazel-*
 DartConfiguration.tcl
 cmake.tmp/
 .vscode/

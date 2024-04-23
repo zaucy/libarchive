@@ -1,0 +1,10 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "config",
+    visibility = ["//:__subpackages__"],
+    hdrs = select({
+        "@platforms//os:windows": ["libarchive_bazel_windows_config.h"],
+        "@platforms//os:linux": ["libarchive_bazel_linux_config.h"],
+    }),
+)

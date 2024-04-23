@@ -1,0 +1,29 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+SRCS = [
+    "cmdline.c",
+    "cpio.c",
+    "cpio.h",
+    "cpio_platform.h",
+]
+
+cc_binary(
+    name = "bsdcpio",
+    srcs = SRCS + select({
+        "@platforms//os:windows": [
+            "cpio_windows.c",
+            "cpio_windows.h",
+        ],
+    }),
+    deps = [
+        "//libarchive",
+        "//libarchive_fe",
+    ],
+)
+
+alias(
+    name = "cpio",
+    actual = ":bsdcpio",
+)
