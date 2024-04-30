@@ -46,6 +46,7 @@ unzip/test/list.h
 CMakeCache.txt
 CMakeFiles/
 bazel-*
+MODULE.bazel.lock
 DartConfiguration.tcl
 cmake.tmp/
 .vscode/
