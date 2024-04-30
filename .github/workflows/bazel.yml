@@ -17,9 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: bazelisk test //... --test_output=errors -k
+      - run: bazelisk test //... --test_output=errors -k --//:use_mbedtls
 
   test-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - run: bazelisk test //... --test_output=errors -k
+      - run: bazelisk test //... --test_output=errors -k --//:use_mbedtls
