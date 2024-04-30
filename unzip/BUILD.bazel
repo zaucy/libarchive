@@ -12,7 +12,6 @@ cc_binary(
         "la_getline.c",
         "la_queue.h",
     ],
-
     # TODO: missing fnmatch while building with bazel
     tags = ["manual"],
     deps = [
