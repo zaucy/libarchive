@@ -213,6 +213,7 @@ libarchive_test(name = "test_extattr_freebsd", deps = [":lib"])
 libarchive_test(name = "test_filter_count", deps = [":lib"])
 libarchive_test(
     name = "test_fuzz",
+    size = "large",
     deps = [":lib"],
     tests = [
         "test_fuzz_ar",
