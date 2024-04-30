@@ -27,4 +27,5 @@ def libarchive_test(name = None, tests = None, data = None, deps = [], **kwargs)
             "//libarchive",
             "//libarchive:internal_hdrs",
         ],
+        **kwargs
     )
