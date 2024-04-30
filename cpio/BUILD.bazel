@@ -16,6 +16,7 @@ cc_binary(
             "cpio_windows.c",
             "cpio_windows.h",
         ],
+        "//conditions:default": [],
     }),
     deps = [
         "//libarchive",
