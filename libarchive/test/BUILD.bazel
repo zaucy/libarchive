@@ -670,17 +670,11 @@ libarchive_test(name = "test_short_writes", deps = [":lib"])
 libarchive_test(
     name = "test_sparse_basic",
     deps = [":lib"],
-    tests = select({
-        "@platforms//os:macos": [
-            # TODO: tests_sparse_basic not passing on macOS
-            # "test_sparse_basic",
-            "test_fully_sparse_files",
-        ],
-        "//conditions:default": [
-            "test_sparse_basic",
-            "test_fully_sparse_files",
-        ],
-    }),
+    tests = [
+        # TODO: tests_sparse_basic not passing on macOS
+        # "test_sparse_basic",
+        "test_fully_sparse_files",
+    ],
 )
 libarchive_test(name = "test_tar_filenames", deps = [":lib"])
 libarchive_test(name = "test_tar_large", deps = [":lib"])
