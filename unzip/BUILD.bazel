@@ -13,8 +13,9 @@ cc_binary(
         "la_queue.h",
     ],
     target_compatible_with = select({
-        # windows missing fnmatch
+        # windows/linux missing fnmatch
         "@platforms//os:windows": ["@platforms//:incompatible"],
+        "@platforms//os:linux": ["@platforms//:incompatible"],
         "//conditions:default": [],
     }),
     deps = [
