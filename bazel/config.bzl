@@ -3,6 +3,6 @@ PLATFORM_LOCAL_DEFINES = select({
         "PLATFORM_CONFIG_H=\\\"libarchive_bazel_windows_config.h\\\"",
     ],
     "//conditions:default": [
-        "PLATFORM_CONFIG_H=\\\"libarchive_bazel_linux_config.h\\\"",
+        "PLATFORM_CONFIG_H=\\\"libarchive_bazel_generic_config.h\\\"",
     ],
 })
