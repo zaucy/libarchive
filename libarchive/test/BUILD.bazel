@@ -286,11 +286,17 @@ _TESTS = [
     # "test_zip_filename_encoding", # unresolved symbol
 ]
 
-write_file(
-    name = "list_h",
-    out = "list.h",
-    content = ["DEFINE_TEST({})".format(test) for test in _TESTS],
-)
+[write_file(
+    name = "{}_list_h".format(test),
+    out = "_{}_list_h/list.h".format(test),
+    content = ["DEFINE_TEST({})".format(test)],
+) for test in _TESTS]
+
+[cc_library(
+    name = "{}_list".format(test),
+    hdrs = ["_{}_list_h/list.h".format(test)],
+    strip_include_prefix = "_{}_list_h".format(test),
+) for test in _TESTS]
 
 cc_library(
     name = "lib",
@@ -298,22 +304,16 @@ cc_library(
     hdrs = ["test.h"],
 )
 
-cc_library(
-    name = "list",
-    srcs = ["list.h"],
-    strip_include_prefix = ".",
-)
-
-cc_test(
-    name = "test",
+[cc_test(
+    name = test,
     includes = ["."],
-    srcs = ["//test_utils:test_main.c", "read_open_memory.c"] + ["{}.c".format(test) for test in _TESTS],
+    srcs = ["//test_utils:test_main.c", "read_open_memory.c"] + ["{}.c".format(test)],
     data = glob(["*.uu"]),
     deps = [
         ":lib",
-        ":list",
+        ":{}_list".format(test),
         "//test_utils:common",
         "//libarchive",
         "//libarchive:internal_hdrs",
     ],
-)
+) for test in _TESTS]
