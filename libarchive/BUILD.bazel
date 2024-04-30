@@ -211,7 +211,10 @@ cc_library(
         "@xz//:lzma",
         "@zlib",
         "@zstd",
-    ],
+    ] + select({
+        "//:use_mbedtls_setting": ["@mbedtls"],
+        "//conditions:default": [],
+    }),
 )
 
 alias(
