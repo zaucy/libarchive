@@ -207,6 +207,7 @@ cc_library(
         "//:config",
         "@bzip2//:bz2",
         "@lz4",
+        "@lz4//:lz4_hc",
         "@xz//:lzma",
         "@zlib",
         "@zstd",

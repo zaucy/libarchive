@@ -165,6 +165,7 @@
 #define HAVE_BZLIB_H 1
 #define HAVE_LIBLZ4 1
 #define HAVE_LZ4_H 1
+#define HAVE_LZ4HC_H 1
 
 #ifdef __APPLE__
 #define MAC_OS_X_VERSION_MIN_REQUIRED 1060
