@@ -12,12 +12,9 @@ cc_binary(
         "la_getline.c",
         "la_queue.h",
     ],
-    target_compatible_with = select({
-        # windows/linux missing fnmatch
-        "@platforms//os:windows": ["@platforms//:incompatible"],
-        "@platforms//os:linux": ["@platforms//:incompatible"],
-        "//conditions:default": [],
-    }),
+
+    # TODO: missing fnmatch while building with bazel
+    tags = ["manual"],
     deps = [
         "//libarchive",
         "//libarchive_fe",
