@@ -193,7 +193,7 @@ libarchive_test(name = "test_compat_xz", deps = [":lib"])
 
 libarchive_test(
     name = "test_compat_zip",
-    deps = ["lib"],
+    deps = [":lib"],
     tests = [
         "test_compat_zip_1",
         "test_compat_zip_2",
@@ -870,4 +870,15 @@ cc_library(
     name = "lib",
     strip_include_prefix = ".",
     hdrs = ["test.h"],
+    srcs = ["read_open_memory.c"],
+    linkopts = select({
+        # tests override some methods in libarchive
+        # SEE: read_open_memory.c
+        "@rules_cc//cc/compiler:msvc-cl": ["/IGNORE:4217"],
+        "//conditions:default": [],
+    }),
+    deps = [
+        "//:config",
+        "//test_utils:common",
+    ],
 )

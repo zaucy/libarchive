@@ -19,7 +19,7 @@ def libarchive_test(name = None, tests = None, data = None, deps = [], **kwargs)
     cc_test(
         name = name,
         includes = ["."],
-        srcs = ["//test_utils:test_main.c", "read_open_memory.c"] + ["{}.c".format(name)],
+        srcs = ["//test_utils:test_main.c"] + ["{}.c".format(name)],
         data = data,
         deps = deps + [
             ":{}_list".format(name),
