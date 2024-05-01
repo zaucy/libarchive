@@ -175,7 +175,9 @@
 #endif
 
 #ifdef __linux__
+#if (defined(__GNUC__) && !defined(__clang__))
 #define HAVE_FUTIMESAT 1
+#endif
 #define HAVE_LINUX_FS_H 1
 #define HAVE_LINUX_MAGIC_H 1
 #define HAVE_LINUX_TYPES_H 1
