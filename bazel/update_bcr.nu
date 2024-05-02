@@ -22,7 +22,7 @@ def main [registry_dir: string] {
 	mkdir $patches_dir;
 	cp ($root_dir | path join 'MODULE.bazel') $module_version_dir;
 
-	git diff v3.7.3..HEAD **/*.bazel **/*.bzl WORKSPACE.bzlmod .bazelrc bazel/BUILD.bazel libarchive_bazel_windows_config.h libarchive_bazel_generic_config.h | save ($patches_dir | path join 'build_with_bazel.patch') -f;
+	git diff v3.7.3..HEAD **/*.bazel **/*.bzl WORKSPACE.bzlmod .bazelrc bazel/BUILD.bazel libarchive_bazel_windows_config.h libarchive_bazel_generic_config.h test_utils/test_common.h | save ($patches_dir | path join 'build_with_bazel.patch') -f;
 
 	echo "DONE";
 }

@@ -10,18 +10,18 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bazelisk test //... --test_output=errors -k
+      - run: bazelisk test --config=bcr_presubmit //... --test_output=errors -k
 
   test-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bazelisk test //... --test_output=errors -k
-      - run: bazelisk test //... --test_output=errors -k --//:use_mbedtls
+      - run: bazelisk test --config=bcr_presubmit //... --test_output=errors -k
+      - run: bazelisk test --config=bcr_presubmit //... --test_output=errors -k --//:use_mbedtls
 
   test-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bazelisk test //... --test_output=errors -k
-      - run: bazelisk test //... --test_output=errors -k --//:use_mbedtls
+      - run: bazelisk test --config=bcr_presubmit //... --test_output=errors -k
+      - run: bazelisk test --config=bcr_presubmit //... --test_output=errors -k --//:use_mbedtls
