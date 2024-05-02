@@ -1,18 +1,6 @@
 common --enable_bzlmod
 build --enable_runfiles
 
-# NOTE: these tests run too slow on Windows
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_fuzz
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_read_truncated_filter
-
-# TODO: failing on Windows BCR buildkite
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_read_format_rar5
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_read_set_format
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_write_filter_gzip_timestamp
-
-# TODO: failing on macOS arm64 BCR buildkite
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_write_format_iso9660
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_write_format_iso9660_boot
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_write_format_iso9660_filename
-build:bcr_presubmit -- -@libarchive//libarchive/test:test_write_format_iso9660_zisofs
+build:bcr_presubmit --build_tag_filters=-bcr_presubmit_skip
+test:bcr_presubmit --test_tag_filters=-bcr_presubmit_skip
 
