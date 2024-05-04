@@ -16,11 +16,6 @@ SRCS = [
 
 cc_binary(
     name = "bsdtar",
-    target_compatible_with = select({
-        # TODO: not working on macos
-        "@platforms//os:macos": ["@platforms//:incompatible"],
-        "//conditions:default": [],
-    }),
     srcs = SRCS + select({
         "@platforms//os:windows": [
             "bsdtar_windows.c",
