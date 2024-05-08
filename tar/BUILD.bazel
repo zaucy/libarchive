@@ -23,6 +23,10 @@ cc_binary(
         ],
         "//conditions:default": [],
     }),
+    local_defines = select({
+        "@platforms//os:macos": ["_PATH_DEFTAPE=\"\""],
+        "//conditions:default": [],
+    }),
     deps = [
         "//libarchive",
         "//libarchive_fe",
