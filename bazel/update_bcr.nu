@@ -22,7 +22,19 @@ def main [registry_dir: string] {
 	mkdir $patches_dir;
 	cp ($root_dir | path join 'MODULE.bazel') $module_version_dir;
 
-	git diff v3.7.3..HEAD **/*.bazel **/*.bzl WORKSPACE.bzlmod .bazelrc bazel/BUILD.bazel libarchive_bazel_windows_config.h libarchive_bazel_generic_config.h test_utils/test_common.h | save ($patches_dir | path join 'build_with_bazel.patch') -f;
+	let modified_files_patterns = [
+		"**/*.bazel",
+		"**/*.bzl",
+		"WORKSPACE.bzlmod",
+		".bazelrc",
+		"bazel/BUILD.bazel",
+		"libarchive_bazel_windows_config.h",
+		"libarchive_bazel_generic_config.h",
+		"test_utils/test_common.h",
+		"tar/bsdtar.c", # patched for _PATH_DEFTAPE issue on macOS
+	];
+
+	git diff v3.7.3..HEAD ...$modified_files_patterns  | save ($patches_dir | path join 'build_with_bazel.patch') -f;
 
 	echo "DONE";
 }
