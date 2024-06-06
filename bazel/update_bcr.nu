@@ -34,7 +34,7 @@ def main [registry_dir: string] {
 		"tar/bsdtar.c", # patched for _PATH_DEFTAPE issue on macOS
 	];
 
-	git diff v3.7.3..HEAD ...$modified_files_patterns  | save ($patches_dir | path join 'build_with_bazel.patch') -f;
+	git diff v3.7.4..HEAD ...$modified_files_patterns  | save ($patches_dir | path join 'build_with_bazel.patch') -f;
 
 	echo "DONE";
 }
