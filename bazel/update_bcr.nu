@@ -23,6 +23,8 @@ def main [registry_dir: string] {
 	cp ($root_dir | path join 'MODULE.bazel') $module_version_dir;
 
 	let modified_files_patterns = [
+		"*.bazel",
+		"*.bzl",
 		"**/*.bazel",
 		"**/*.bzl",
 		"WORKSPACE.bzlmod",
