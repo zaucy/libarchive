@@ -61,6 +61,8 @@ tar/test/list.h
 unzip/test/list.h
 CMakeCache.txt
 CMakeFiles/
+bazel-*
+MODULE.bazel.lock
 DartConfiguration.tcl
 cmake.tmp/
 .vs/
