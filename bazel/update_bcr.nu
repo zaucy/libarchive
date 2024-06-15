@@ -34,11 +34,15 @@ def main [registry_dir: string] {
 		"libarchive_bazel_generic_config.h",
 		"test_utils/test_common.h",
 		"tar/bsdtar.c", # patched for _PATH_DEFTAPE issue on macOS
-		"libarchive/archive_hmac_private.h", # patched to make bsdtar hermetic and not link against apple common crypto
 	];
 
 	let patch_path = $patches_dir | path join 'build_with_bazel.patch';
 	git diff v3.7.4..HEAD ...$modified_files_patterns | save $patch_path -f;
 	print $"PATCH: ($patch_path)";
+
+	let patch_path = $patches_dir | path join 'archive_hmac_private.h.patch';
+	git diff v3.7.4..HEAD libarchive/archive_hmac_private.h | save $patch_path -f;  # patched to make bsdtar hermetic and not link against apple common crypto
+	print $"PATCH: ($patch_path)";
+
 	print "DONE";
 }
