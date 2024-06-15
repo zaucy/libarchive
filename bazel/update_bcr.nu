@@ -15,7 +15,7 @@ def main [registry_dir: string] {
 	#	}
 	#}
 
-	echo $"INFO: writing ($module_name)@($bazel_module_version) to ($registry_dir) ...";
+	print $"INFO: writing ($module_name)@($bazel_module_version) to ($registry_dir)";
 	let module_version_dir = ($registry_module_dir | path join $bazel_module_version);
 	let patches_dir = $module_version_dir | path join 'patches';
 	mkdir $module_version_dir;
@@ -34,9 +34,11 @@ def main [registry_dir: string] {
 		"libarchive_bazel_generic_config.h",
 		"test_utils/test_common.h",
 		"tar/bsdtar.c", # patched for _PATH_DEFTAPE issue on macOS
+		"libarchive/archive_hmac_private.h", # patched to make bsdtar hermetic and not link against apple common crypto
 	];
 
-	git diff v3.7.4..HEAD ...$modified_files_patterns  | save ($patches_dir | path join 'build_with_bazel.patch') -f;
-
-	echo "DONE";
+	let patch_path = $patches_dir | path join 'build_with_bazel.patch';
+	git diff v3.7.4..HEAD ...$modified_files_patterns | save $patch_path -f;
+	print $"PATCH: ($patch_path)";
+	print "DONE";
 }
