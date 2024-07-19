@@ -156,6 +156,7 @@
 
 #define HAVE_ZLIB_H 1
 #define HAVE_ZSTD_H 1
+#define HAVE_ZSTD_compressStream 1
 #define HAVE_LIBZSTD 1
 #define HAVE_LIBZSTD_COMPRESSOR 1
 #define HAVE_LIBLZMA 1
